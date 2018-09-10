@@ -1,0 +1,1 @@
+copy ..\out\Notifier.ane "..\..\test\ane\Notifier.ane"

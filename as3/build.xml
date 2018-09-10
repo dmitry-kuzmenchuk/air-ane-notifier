@@ -1,0 +1,25 @@
+<project name="Notifier" default="build">
+
+	<property environment="env" />
+	<fail unless="env.FLEX_HOME" message="FLEX_HOME needs to be defined as an environment variable or in the Ant build." />
+	<property name="FLEX_HOME" location="C:/flex-415-air-22b/" />
+	
+	<property name="OUTPUT" location="lib/Notifier.swc"/>
+
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+
+	<target name="build">
+
+		<mkdir dir="lib" />
+
+		<!-- compile SWC -->
+		<compc output="${OUTPUT}" swf-version="14">
+			<load-config filename="${FLEX_HOME}/frameworks/air-config.xml" /><!-- uncomment for AIR -->
+			<sp path-element="src" />
+			<include-sources dir="src" includes="*"  />
+		</compc>
+		
+		<!-- cleanup -->
+		<delete dir="lib/tempDoc" />
+	</target>
+</project>
